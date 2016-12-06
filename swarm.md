@@ -2,6 +2,22 @@ class: center, middle, inverse
 # Docker swarm mode
 
 ---
+class: center, middle, inverse
+
+## Docker workflow
+
+
+![Docker wf](./img/simple-wf.jpg)
+
+---
+class: center, middle, inverse
+
+##  Swarm
+
+
+![Docker swarm mode](./img/swarm.png)
+
+---
 ## Swarm?
 
 Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host.  
@@ -14,12 +30,12 @@ Alternatives :
 
 ## Swarm vs Swarm mode (>1.12)
 
-In order to run swarm you needed:
+In order to run swarm you needed to:
 * Use an external key/value storage (etcd or consul)
 * Install docker on each node
 * Run specific swarm container
 
-swarm mode:
+To run swarm mode you just need to:
 * Install docker on each node
 
 ---
@@ -104,7 +120,7 @@ There are two modes:
 * global: run one tasks on each worker
 
 ```bash
-docker service create -p 8080:80 --name monservice  --env MYVAR=foo awl-httpd
+docker service create -p 8080:80 --name monservice  --env MYVAR=foo nginx
 
 ```
 (to be run on a manager)
