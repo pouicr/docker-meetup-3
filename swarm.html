@@ -46,12 +46,34 @@
 </head>
 
 <body>
-<p>
-<a href="intro.html"><img src="img/docker.png" alt="intro" width="400" height="400" border="0"></a>
-</p>
-<p>
-<a href="swarm.html"><img src="img/docker-swarm-logo.png" alt="intro" width="400" height="400" border="0"></a>
-</p>
+    <script src="/js/remark-latest.min.js">
+    </script>
+    <script>
+        sourceUrls = [
+            'swarm.md',
+        ]
+
+        var xmlhttp = new XMLHttpRequest();
+
+        var source = ""
+
+        for (var i = 0; i < sourceUrls.length; i++) {
+            xmlhttp.open('GET', sourceUrls[i], false);
+            xmlhttp.send();
+
+            source += xmlhttp.responseText;
+
+            // Files shouldn't have --- at the head or foot
+            // It is added automatically here
+            if (i + 1 < sourceUrls.length) {
+                source += "\n---\n"
+            }
+        };
+
+        var slideshow = remark.create({
+            source: source
+        });
+    </script>
 </body>
 
 </html>

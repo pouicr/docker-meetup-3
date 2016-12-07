@@ -15,7 +15,7 @@ class: center, middle, inverse
 ##  Swarm
 
 
-![Docker swarm mode](./img/swarm.png)
+![Docker swarm mode](./img/docker-swarm.png)
 
 ---
 ## Swarm?
