@@ -20,7 +20,7 @@ class: center, middle, inverse
 ---
 ## Swarm?
 
-Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host.  
+Docker Swarm is native clustering for Docker. It turns a pool of Docker hosts into a single, virtual Docker host.
 This solution is provided by Docker inc.
 
 Alternatives :
@@ -48,7 +48,7 @@ To run swarm mode you just need to:
 
 * task: unit of work (a container definition : image, cmd ...)
 
-* service: a set of replica (task) based on specified image
+* service: the contract, a set of replica (task) based on specified image
 
 * load balancing: using ingress load balancing and ipvs
 
@@ -79,7 +79,7 @@ docker swarm join-token worker
 
 ## Join
 
-On each members of the cluster :
+On each members of the cluster (as worker or manager):
 ```bash
 docker swarm join  --token $TOKEN 192.168.56.10:2377
 ```
@@ -163,7 +163,7 @@ dmu1ept4cxcf  redis     3/3       redis:3.0.6
 
 ---
 
-## docker ps and service ps
+## Service ps
 
 A service is a set of standard containers:
 
@@ -206,3 +206,39 @@ docker service scale redis=10
  * node.role 	node's manager or worker role 	node.role == manager
  * node.labels 	node's labels added by cluster admins 	node.labels.security == high
  * engine.labels 	Docker Engine's labels 	engine.labels.operatingsystem == ubuntu 14.04
+
+---
+## Update without down-time
+
+Several options can be used:
+
+```
+docker service update --update-delay=10s --update-parallelism=1 --image service-image:v2
+```
+
+---
+## Health check
+
+Add health check in your Dockerfile:
+
+```
+FROM ...
+HEALTHCHECK --timeout=1s --interval=1s --retries=3 \
+  CMD curl -s --fail http://localhost:80/ || exit 1
+...
+```
+
+Check the health status:
+
+```
+docker inspect --format "{{json .State.Health.Status }}" container_name
+```
+
+
+
+---
+## under the hood
+
+VXLAN => multi host network
+
+IPVS + DNS => give a virtual IP to a service associate to a name
