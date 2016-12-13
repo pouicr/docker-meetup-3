@@ -1,6 +1,6 @@
 .SILENT :
 .PHONY : all
-IMAGE := pouicr/meetupslide3
+IMAGE := pouicr/docker-meetup-3
 
 dev:
     $(eval docker_run_flags += -v $(PWD):/usr/share/nginx/html/)

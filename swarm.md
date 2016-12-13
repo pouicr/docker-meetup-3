@@ -212,7 +212,7 @@ docker service scale redis=10
 
 Several options can be used:
 
-```
+```bash
 docker service update --update-delay=10s --update-parallelism=1 --image service-image:v2
 ```
 
@@ -221,7 +221,7 @@ docker service update --update-delay=10s --update-parallelism=1 --image service-
 
 Add health check in your Dockerfile:
 
-```
+```bash
 FROM ...
 HEALTHCHECK --timeout=1s --interval=1s --retries=3 \
   CMD curl -s --fail http://localhost:80/ || exit 1
@@ -230,7 +230,7 @@ HEALTHCHECK --timeout=1s --interval=1s --retries=3 \
 
 Check the health status:
 
-```
+```bash
 docker inspect --format "{{json .State.Health.Status }}" container_name
 ```
 
@@ -242,3 +242,20 @@ docker inspect --format "{{json .State.Health.Status }}" container_name
 VXLAN => multi host network
 
 IPVS + DNS => give a virtual IP to a service associate to a name
+
+---
+## Want to try
+
+Visit [play-with-docker](http://play-with-docker.com/)
+
+And check [this video](https://youtu.be/bGYAkFGkUws)
+
+---
+class: center, middle, inverse
+
+## Enjoy Docker swarming
+
+
+![Docker wf](./img/docker-swarm-logo.png)
+
+
