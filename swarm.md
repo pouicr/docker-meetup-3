@@ -215,9 +215,20 @@ Several options can be used:
 ```bash
 docker service update --update-delay=10s --update-parallelism=1 --image service-image:v2
 ```
+---
+## Under the hood
+
+VXLAN => multi host network
+
+IPVS + DNS => give a virtual IP to a service associate to a name
+
+![Docker ingress](./img/ingress-routing-mesh.png)
+
+[Routing mesh detail](https://docs.docker.com/engine/swarm/ingress/)
+
 
 ---
-## Health check
+## Health checks
 
 Add health check in your Dockerfile:
 
@@ -234,14 +245,20 @@ Check the health status:
 docker inspect --format "{{json .State.Health.Status }}" container_name
 ```
 
+Swarm consider **health checks** to open the traffic to container!
 
 
 ---
-## under the hood
+## What about orchestration?
 
-VXLAN => multi host network
+**stack** API is planned to answer this.
 
-IPVS + DNS => give a virtual IP to a service associate to a name
+The idea:
+* convert docker-compose.yml in .dab (Distributed Apllication Bundle) file
+* use **`docker deploy`** or **`docker stack deploy`** to create services on swarm
+
+Only experimental for now... Not fully functionnal.
+
 
 ---
 ## Want to try
