@@ -251,13 +251,17 @@ Swarm consider **health checks** to open the traffic to container!
 ---
 ## What about orchestration?
 
-**stack** API is planned to answer this.
+**stack** API is here to answer this.
 
-The idea:
-* convert docker-compose.yml in .dab (Distributed Apllication Bundle) file
-* use **`docker deploy`** or **`docker stack deploy`** to create services on swarm
+docker-compose:
+* New version: V3
+* Add cluster constraints (deploy tag)
+* for now you just need *docker* (not docker-compose)
 
-Only experimental for now... Not fully functionnal.
+
+```bash
+docker stack deploy --compose-file=docker-compose.yml <stack-name>
+```
 
 
 ---
